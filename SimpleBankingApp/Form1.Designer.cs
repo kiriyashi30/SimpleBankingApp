@@ -64,13 +64,14 @@
             // 
             txtUsername.BackColor = Color.Azure;
             txtUsername.Font = new Font("Arial", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUsername.ForeColor = SystemColors.ScrollBar;
+            txtUsername.ForeColor = SystemColors.InfoText;
             txtUsername.Location = new Point(67, 252);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Username";
             txtUsername.Size = new Size(407, 29);
             txtUsername.TabIndex = 0;
             txtUsername.TextAlign = HorizontalAlignment.Center;
+            txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // txtPassword
             // 

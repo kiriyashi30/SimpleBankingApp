@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAccount));
             panel1 = new Panel();
+            BackSignUp = new Button();
             button1 = new Button();
             label3 = new Label();
             txtUsernameSignUp = new TextBox();
             txtPasswordSignUp = new TextBox();
             pictureBox1 = new PictureBox();
-            BackSignUp = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -55,6 +55,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(534, 572);
             panel1.TabIndex = 10;
+            // 
+            // BackSignUp
+            // 
+            BackSignUp.BackColor = Color.DodgerBlue;
+            BackSignUp.FlatStyle = FlatStyle.Popup;
+            BackSignUp.Font = new Font("Arial", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
+            BackSignUp.ForeColor = Color.WhiteSmoke;
+            BackSignUp.Location = new Point(173, 466);
+            BackSignUp.Name = "BackSignUp";
+            BackSignUp.Size = new Size(175, 48);
+            BackSignUp.TabIndex = 10;
+            BackSignUp.Text = "Back";
+            BackSignUp.UseVisualStyleBackColor = false;
+            BackSignUp.Click += BackSignUp_Click;
             // 
             // button1
             // 
@@ -85,7 +99,7 @@
             // 
             txtUsernameSignUp.BackColor = Color.Azure;
             txtUsernameSignUp.Font = new Font("Arial", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUsernameSignUp.ForeColor = SystemColors.ScrollBar;
+            txtUsernameSignUp.ForeColor = SystemColors.InfoText;
             txtUsernameSignUp.Location = new Point(62, 253);
             txtUsernameSignUp.Name = "txtUsernameSignUp";
             txtUsernameSignUp.PlaceholderText = "Username";
@@ -97,7 +111,7 @@
             // 
             txtPasswordSignUp.BackColor = Color.Azure;
             txtPasswordSignUp.Font = new Font("Arial", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPasswordSignUp.ForeColor = SystemColors.ScrollBar;
+            txtPasswordSignUp.ForeColor = SystemColors.InfoText;
             txtPasswordSignUp.Location = new Point(62, 305);
             txtPasswordSignUp.Name = "txtPasswordSignUp";
             txtPasswordSignUp.PlaceholderText = "Password";
@@ -115,20 +129,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
-            // 
-            // BackSignUp
-            // 
-            BackSignUp.BackColor = Color.DodgerBlue;
-            BackSignUp.FlatStyle = FlatStyle.Popup;
-            BackSignUp.Font = new Font("Arial", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
-            BackSignUp.ForeColor = Color.WhiteSmoke;
-            BackSignUp.Location = new Point(173, 466);
-            BackSignUp.Name = "BackSignUp";
-            BackSignUp.Size = new Size(175, 48);
-            BackSignUp.TabIndex = 10;
-            BackSignUp.Text = "Back";
-            BackSignUp.UseVisualStyleBackColor = false;
-            BackSignUp.Click += BackSignUp_Click;
             // 
             // CreateAccount
             // 
