@@ -141,6 +141,8 @@
             WithdrawalTextBox.Size = new Size(401, 35);
             WithdrawalTextBox.TabIndex = 12;
             WithdrawalTextBox.TextAlign = HorizontalAlignment.Center;
+            WithdrawalTextBox.TextChanged += WithdrawalTextBox_TextChanged;
+            WithdrawalTextBox.KeyPress += WithdrawalTextBox_KeyPress;
             // 
             // WithdrawalTab
             // 

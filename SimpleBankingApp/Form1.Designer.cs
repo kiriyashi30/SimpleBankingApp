@@ -163,6 +163,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(137, 66);
             pictureBox1.Name = "pictureBox1";
@@ -182,6 +183,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

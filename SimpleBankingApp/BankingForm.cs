@@ -26,9 +26,7 @@ namespace SimpleBankingApp
             currentUsername = username;
             UpdateBalanceLabel();
             lblWelcome.Text = $"Welcome, {currentUsername}!";
-
         }
-
 
         private void UpdateBalanceLabel()
         {
@@ -60,19 +58,6 @@ namespace SimpleBankingApp
             loginForm.Show();
             this.Close();
         }
-
-        private void toggleViewLabel_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (textBox2.UseSystemPasswordChar == true)
-            {
-                textBox2.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBox2.UseSystemPasswordChar = true;
-            }
-        }
-
         private void DepositButton2_Click(object sender, EventArgs e)
         {
             DepositTab deposit = new DepositTab(currentUsername);
@@ -85,6 +70,26 @@ namespace SimpleBankingApp
             WithdrawalTab withdrawal = new WithdrawalTab(currentUsername);
             withdrawal.Show();
             this.Hide();
+        }
+
+        private void ToggleViewBox_Click(object sender, EventArgs e)
+        {
+            if (textBox2.UseSystemPasswordChar == true)
+            {
+                textBox2.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBox2.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void AccountCenterButton_Click(object sender, EventArgs e)
+        {
+            BankingFormAccount bankingAccount = new BankingFormAccount();
+            bankingAccount.Show();
+            this.Close();
+
         }
     }
 }

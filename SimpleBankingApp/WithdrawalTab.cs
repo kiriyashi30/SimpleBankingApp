@@ -19,6 +19,9 @@ namespace SimpleBankingApp
         {
             InitializeComponent();
             currentUsername = username;
+
+            WithdrawalTextBox.KeyPress += WithdrawalTextBox_KeyPress;
+            WithdrawalTextBox.TextChanged += WithdrawalTextBox_TextChanged;
         }
 
         private void WithdrawalTabButton_Click(object sender, EventArgs e)
@@ -63,6 +66,32 @@ namespace SimpleBankingApp
             BankingForm bankingtab = new BankingForm(currentUsername);
             bankingtab.Show();
             this.Hide();
+        }
+
+        private void WithdrawalTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow control characters (like backspace)
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            // Allow only numeric characters
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            // Allow only one decimal point
+            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void WithdrawalTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
