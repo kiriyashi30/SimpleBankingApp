@@ -197,11 +197,11 @@
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(217, 251);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 4;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.119497F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.119497F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 56.2893066F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.2362871F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.2362871F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 75.52743F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(1218, 318);
             tableLayoutPanel2.TabIndex = 20;
             // 
@@ -214,7 +214,7 @@
             label6.ForeColor = SystemColors.ActiveCaptionText;
             label6.Location = new Point(522, 0);
             label6.Name = "label6";
-            label6.Size = new Size(171, 29);
+            label6.Size = new Size(171, 32);
             label6.TabIndex = 25;
             label6.Text = "Transaction";
             // 
@@ -225,7 +225,7 @@
             label7.BackColor = Color.PaleTurquoise;
             label7.Font = new Font("Arial Rounded MT Bold", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ActiveCaptionText;
-            label7.Location = new Point(70, 29);
+            label7.Location = new Point(70, 38);
             label7.Name = "label7";
             label7.Size = new Size(102, 26);
             label7.TabIndex = 26;
@@ -238,7 +238,7 @@
             label8.BackColor = Color.PaleTurquoise;
             label8.Font = new Font("Arial Rounded MT Bold", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = SystemColors.ActiveCaptionText;
-            label8.Location = new Point(327, 29);
+            label8.Location = new Point(327, 38);
             label8.Name = "label8";
             label8.Size = new Size(74, 26);
             label8.TabIndex = 27;
@@ -251,7 +251,7 @@
             label9.BackColor = Color.PaleTurquoise;
             label9.Font = new Font("Arial Rounded MT Bold", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = SystemColors.ActiveCaptionText;
-            label9.Location = new Point(576, 29);
+            label9.Location = new Point(576, 38);
             label9.Name = "label9";
             label9.Size = new Size(62, 26);
             label9.TabIndex = 28;
@@ -264,7 +264,7 @@
             label10.BackColor = Color.PaleTurquoise;
             label10.Font = new Font("Arial Rounded MT Bold", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ActiveCaptionText;
-            label10.Location = new Point(818, 29);
+            label10.Location = new Point(818, 38);
             label10.Name = "label10";
             label10.Size = new Size(64, 26);
             label10.TabIndex = 29;
@@ -277,7 +277,7 @@
             label11.BackColor = Color.PaleTurquoise;
             label11.Font = new Font("Arial Rounded MT Bold", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
             label11.ForeColor = SystemColors.ActiveCaptionText;
-            label11.Location = new Point(1048, 29);
+            label11.Location = new Point(1048, 38);
             label11.Name = "label11";
             label11.Size = new Size(94, 26);
             label11.TabIndex = 30;
@@ -288,50 +288,54 @@
             textBoxPurpose.BackColor = Color.PaleTurquoise;
             textBoxPurpose.BorderStyle = BorderStyle.None;
             textBoxPurpose.Dock = DockStyle.Fill;
-            textBoxPurpose.Location = new Point(3, 61);
+            textBoxPurpose.Location = new Point(3, 79);
             textBoxPurpose.Multiline = true;
             textBoxPurpose.Name = "textBoxPurpose";
-            textBoxPurpose.Size = new Size(237, 173);
+            textBoxPurpose.Size = new Size(237, 236);
             textBoxPurpose.TabIndex = 31;
             // 
             // textBoxName
             // 
             textBoxName.BackColor = Color.PaleTurquoise;
             textBoxName.BorderStyle = BorderStyle.None;
-            textBoxName.Location = new Point(246, 61);
+            textBoxName.Dock = DockStyle.Fill;
+            textBoxName.Location = new Point(246, 79);
             textBoxName.Multiline = true;
             textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(237, 173);
+            textBoxName.Size = new Size(237, 236);
             textBoxName.TabIndex = 32;
             // 
             // textBoxDate
             // 
             textBoxDate.BackColor = Color.PaleTurquoise;
             textBoxDate.BorderStyle = BorderStyle.None;
-            textBoxDate.Location = new Point(489, 61);
+            textBoxDate.Dock = DockStyle.Fill;
+            textBoxDate.Location = new Point(489, 79);
             textBoxDate.Multiline = true;
             textBoxDate.Name = "textBoxDate";
-            textBoxDate.Size = new Size(237, 173);
+            textBoxDate.Size = new Size(237, 236);
             textBoxDate.TabIndex = 33;
             // 
             // textBoxTime
             // 
             textBoxTime.BackColor = Color.PaleTurquoise;
             textBoxTime.BorderStyle = BorderStyle.None;
-            textBoxTime.Location = new Point(732, 61);
+            textBoxTime.Dock = DockStyle.Fill;
+            textBoxTime.Location = new Point(732, 79);
             textBoxTime.Multiline = true;
             textBoxTime.Name = "textBoxTime";
-            textBoxTime.Size = new Size(237, 173);
+            textBoxTime.Size = new Size(237, 236);
             textBoxTime.TabIndex = 34;
             // 
             // textBoxAmount
             // 
             textBoxAmount.BackColor = Color.PaleTurquoise;
             textBoxAmount.BorderStyle = BorderStyle.None;
-            textBoxAmount.Location = new Point(975, 61);
+            textBoxAmount.Dock = DockStyle.Fill;
+            textBoxAmount.Location = new Point(975, 79);
             textBoxAmount.Multiline = true;
             textBoxAmount.Name = "textBoxAmount";
-            textBoxAmount.Size = new Size(237, 173);
+            textBoxAmount.Size = new Size(240, 236);
             textBoxAmount.TabIndex = 35;
             // 
             // BankingFormAccount

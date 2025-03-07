@@ -144,6 +144,69 @@ Amount: {Amount:C}
             File.WriteAllText(receiptFileName, receipt.ToString());
 
             Console.WriteLine("Receipt added successfully!");
-        }      
+        }
+
+        public static void LoadReceipts()
+        {
+            // Ensure the receipts folder exists
+            if (!Directory.Exists(receiptsBaseFolder))
+            {
+                return;
+            }
+
+            // Iterate through each user's folder in the Receipts folder
+            foreach (var userFolder in Directory.GetDirectories(receiptsBaseFolder))
+            {
+                string username = Path.GetFileName(userFolder); // Get the username from the folder name
+
+                // Initialize the receipt list for the user if it doesn't exist
+                if (!Receipts.ContainsKey(username))
+                {
+                    Receipts[username] = new List<Receipt>();
+                }
+
+                // Iterate through each receipt file in the user's folder
+                foreach (var receiptFile in Directory.GetFiles(userFolder, "*.txt"))
+                {
+                    // Read the receipt content from the file
+                    string receiptContent = File.ReadAllText(receiptFile);
+
+                    // Parse the receipt content into a Receipt object
+                    Receipt receipt = ParseReceiptFromContent(receiptContent);
+
+                    // Add the receipt to the user's receipt list
+                    if (receipt != null)
+                    {
+                        Receipts[username].Add(receipt);
+                    }
+                }
+            }
+        }
+
+        private static Receipt ParseReceiptFromContent(string content)
+        {
+            try
+            {
+                // Extract the receipt details from the content
+                string[] lines = content.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                string purpose = lines[2].Replace("Purpose: ", "").Trim();
+                DateTime transactionDate = DateTime.Parse(lines[0].Replace("Date: ", "").Trim());
+                decimal amount = decimal.Parse(lines[3].Replace("Amount: ", "").Trim(), System.Globalization.NumberStyles.Currency);
+
+                // Create and return a new Receipt object
+                return new Receipt
+                {
+                    Purpose = purpose,
+                    TransactionDate = transactionDate,
+                    Amount = amount
+                };
+            }
+            catch
+            {
+                // If parsing fails, return null
+                return null;
+            }
+        }
     }
 }
