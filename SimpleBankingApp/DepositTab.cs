@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBankingApp
 {
     public partial class DepositTab : Form
     {
-
         private string currentUsername;
+        private string currentPurpose = "Deposit";
 
         public DepositTab(string username)
         {
@@ -21,12 +14,11 @@ namespace SimpleBankingApp
             currentUsername = username;
 
             DepositTextBox.KeyPress += DepositTextBox_KeyPress;
-            DepositTextBox.TextChanged += DepositTextBox_TextChanged;
         }
 
         private void DepositTabButton_Click(object sender, EventArgs e)
         {
-
+            // Validate username
             if (string.IsNullOrEmpty(currentUsername))
             {
                 MessageBox.Show("Username is not provided!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -40,14 +32,15 @@ namespace SimpleBankingApp
                 return;
             }
 
+            // Check if the username exists in the accounts
             if (!UserAccount.Accounts.TryGetValue(currentUsername, out var account))
             {
                 MessageBox.Show("Username not found!");
                 return;
             }
 
+            // Validate the deposit amount
             string inputAmount = DepositTextBox.Text;
-
             if (string.IsNullOrWhiteSpace(inputAmount) ||
                 !decimal.TryParse(inputAmount, out decimal depositAmount) ||
                 depositAmount <= 0)
@@ -55,22 +48,26 @@ namespace SimpleBankingApp
                 MessageBox.Show("Invalid amount! Please enter a positive number.");
                 return;
             }
-            else
-            {
-                // Deposit the valid amount
-                account.Balance += depositAmount;
-                MessageBox.Show($"Successfully deposited {depositAmount:C}!");
 
-                UserAccount.SaveAccounts();
+            // Deposit the valid amount
+            account.Balance += depositAmount;
+            MessageBox.Show($"Successfully deposited {depositAmount:C}!");
 
-                BankingForm bankingtab = new BankingForm(currentUsername);
-                bankingtab.Show();
-                this.Close();
-            }
+            // Save the updated account balance
+            UserAccount.SaveAccounts();
+
+            // Generate a receipt for the deposit
+            UserAccount.AddReceipt(currentUsername, currentPurpose, depositAmount);
+
+            // Navigate back to the BankingForm
+            BankingForm bankingtab = new BankingForm(currentUsername);
+            bankingtab.Show();
+            this.Close();
         }
 
         private void DepositBack_Click(object sender, EventArgs e)
         {
+            // Navigate back to the BankingForm
             BankingForm bankingtab = new BankingForm(currentUsername);
             bankingtab.Show();
             this.Close();
@@ -84,7 +81,7 @@ namespace SimpleBankingApp
                 return;
             }
 
-            // Allow only numeric characters
+            // Allow only numeric characters and one decimal point
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true;
@@ -95,11 +92,6 @@ namespace SimpleBankingApp
             {
                 e.Handled = true;
             }
-        }
-
-        private void DepositTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

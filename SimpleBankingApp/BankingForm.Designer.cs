@@ -35,6 +35,7 @@
             lblWelcome = new Label();
             panel1 = new Panel();
             tableLayoutPanel4 = new TableLayoutPanel();
+            MyAccount = new Button();
             label3 = new Label();
             label2 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -46,7 +47,6 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             WithdrawalButton2 = new Button();
             DepositButton2 = new Button();
-            MyAccount = new Button();
             panel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -59,8 +59,8 @@
             // 
             // Deposit
             // 
-            Deposit.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            Deposit.Location = new Point(3, 203);
+            Deposit.Anchor = AnchorStyles.Top;
+            Deposit.Location = new Point(3, 189);
             Deposit.Name = "Deposit";
             Deposit.Size = new Size(211, 58);
             Deposit.TabIndex = 0;
@@ -70,8 +70,8 @@
             // 
             // Withdraw
             // 
-            Withdraw.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            Withdraw.Location = new Point(3, 296);
+            Withdraw.Anchor = AnchorStyles.Top;
+            Withdraw.Location = new Point(3, 282);
             Withdraw.Name = "Withdraw";
             Withdraw.Size = new Size(211, 58);
             Withdraw.TabIndex = 1;
@@ -138,6 +138,17 @@
             tableLayoutPanel4.Size = new Size(217, 563);
             tableLayoutPanel4.TabIndex = 0;
             // 
+            // MyAccount
+            // 
+            MyAccount.Anchor = AnchorStyles.Top;
+            MyAccount.Location = new Point(3, 96);
+            MyAccount.Name = "MyAccount";
+            MyAccount.Size = new Size(211, 58);
+            MyAccount.TabIndex = 11;
+            MyAccount.Text = "My Account";
+            MyAccount.UseVisualStyleBackColor = true;
+            MyAccount.Click += MyAccount_Click;
+            // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
@@ -153,11 +164,11 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Right;
+            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Arial Rounded MT Bold", 19.875F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(10, 75);
+            label2.Location = new Point(6, 121);
             label2.Name = "label2";
             label2.Size = new Size(167, 32);
             label2.TabIndex = 8;
@@ -234,11 +245,11 @@
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Controls.Add(AccountCenterButton, 1, 0);
-            tableLayoutPanel5.Controls.Add(label2, 0, 0);
+            tableLayoutPanel5.Controls.Add(AccountCenterButton, 1, 1);
+            tableLayoutPanel5.Controls.Add(label2, 0, 1);
             tableLayoutPanel5.Location = new Point(1074, 2);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Size = new Size(361, 183);
@@ -249,7 +260,7 @@
             AccountCenterButton.Anchor = AnchorStyles.Left;
             AccountCenterButton.BackgroundImage = (Image)resources.GetObject("AccountCenterButton.BackgroundImage");
             AccountCenterButton.BackgroundImageLayout = ImageLayout.Zoom;
-            AccountCenterButton.Location = new Point(183, 61);
+            AccountCenterButton.Location = new Point(183, 107);
             AccountCenterButton.Name = "AccountCenterButton";
             AccountCenterButton.Size = new Size(60, 60);
             AccountCenterButton.SizeMode = PictureBoxSizeMode.Zoom;
@@ -303,16 +314,6 @@
             DepositButton2.Text = "Deposit";
             DepositButton2.UseVisualStyleBackColor = true;
             DepositButton2.Click += DepositButton2_Click;
-            // 
-            // MyAccount
-            // 
-            MyAccount.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            MyAccount.Location = new Point(3, 110);
-            MyAccount.Name = "MyAccount";
-            MyAccount.Size = new Size(211, 58);
-            MyAccount.TabIndex = 11;
-            MyAccount.Text = "My Account";
-            MyAccount.UseVisualStyleBackColor = true;
             // 
             // BankingForm
             // 

@@ -19,6 +19,8 @@ namespace SimpleBankingApp
     {
 
         private string currentUsername;
+        private string currentAccountNum;
+        private decimal currentAmount;
 
         public BankingForm(string username)
         {
@@ -86,10 +88,17 @@ namespace SimpleBankingApp
 
         private void AccountCenterButton_Click(object sender, EventArgs e)
         {
-            BankingFormAccount bankingAccount = new BankingFormAccount();
+            BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
             bankingAccount.Show();
             this.Close();
 
+        }
+
+        private void MyAccount_Click(object sender, EventArgs e)
+        {
+            BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
+            bankingAccount.Show();
+            this.Close();
         }
     }
 }

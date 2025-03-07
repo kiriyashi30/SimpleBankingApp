@@ -7,39 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SimpleBankingApp
 {
     public partial class WithdrawalTab : Form
     {
         private string currentUsername;
-
+        private string currentPurpose = "Withdrawal";
+        private decimal currentAmount;
         public WithdrawalTab(string username)
         {
             InitializeComponent();
             currentUsername = username;
-
-            WithdrawalTextBox.KeyPress += WithdrawalTextBox_KeyPress;
-            WithdrawalTextBox.TextChanged += WithdrawalTextBox_TextChanged;
         }
-
         private void WithdrawalTabButton_Click(object sender, EventArgs e)
         {
             string input = WithdrawalTextBox.Text;
+
+            // Validate the input amount
             if (decimal.TryParse(input, out decimal amount) && amount > 0)
             {
                 if (UserAccount.Accounts.ContainsKey(currentUsername))
                 {
                     var account = UserAccount.Accounts[currentUsername];
 
+                    // Check if the account has sufficient balance
                     if (account.Balance >= amount)
                     {
+                        // Update the account balance
                         account.Balance -= amount;
                         UserAccount.SaveAccounts();
-                        MessageBox.Show("Withdrawal successful!");
 
-                        UserAccount.SaveAccounts();
+                        currentAmount = amount;
+
+                        UserAccount.AddReceipt(currentUsername, currentPurpose, currentAmount);
+
+                        MessageBox.Show("Withdrawal successful!");
 
                         BankingForm bankingtab = new BankingForm(currentUsername);
                         bankingtab.Show();
@@ -57,41 +60,58 @@ namespace SimpleBankingApp
             }
             else
             {
-                MessageBox.Show("Invalid amount!");
+                MessageBox.Show("Invalid amount! Please enter a positive number.");
             }
         }
 
         private void WIthdrawalBack_Click(object sender, EventArgs e)
         {
+            // Navigate back to the banking form
             BankingForm bankingtab = new BankingForm(currentUsername);
             bankingtab.Show();
             this.Hide();
         }
 
-        private void WithdrawalTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void button1000_Click(object sender, EventArgs e)
         {
-            // Allow control characters (like backspace)
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            // Allow only numeric characters
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-
-            // Allow only one decimal point
-            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
-            {
-                e.Handled = true;
-            }
+            UpdateWithdrawalAmount(1000);
         }
 
-        private void WithdrawalTextBox_TextChanged(object sender, EventArgs e)
+        private void button500_Click(object sender, EventArgs e)
         {
+            UpdateWithdrawalAmount(500);
+        }
 
+        private void button200_Click(object sender, EventArgs e)
+        {
+            UpdateWithdrawalAmount(200);
+        }
+
+        private void button100_Click(object sender, EventArgs e)
+        {
+            UpdateWithdrawalAmount(100);
+        }
+
+        private void button50_Click(object sender, EventArgs e)
+        {
+            UpdateWithdrawalAmount(50);
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            UpdateWithdrawalAmount(20);
+        }
+        private void UpdateWithdrawalAmount(int amount)
+        {
+            if (int.TryParse(WithdrawalTextBox.Text, out int currentValue))
+            {
+                currentValue += amount;
+            }
+            else
+            {
+                currentValue = amount;
+            }
+            WithdrawalTextBox.Text = currentValue.ToString();
         }
     }
 }

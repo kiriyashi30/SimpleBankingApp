@@ -96,7 +96,6 @@
             DepositTextBox.Size = new Size(644, 35);
             DepositTextBox.TabIndex = 12;
             DepositTextBox.TextAlign = HorizontalAlignment.Center;
-            DepositTextBox.TextChanged += DepositTextBox_TextChanged;
             DepositTextBox.KeyPress += DepositTextBox_KeyPress;
             // 
             // tableLayoutPanel4
@@ -153,6 +152,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "DepositTab";
             Text = "DepositTab";
+            WindowState = FormWindowState.Maximized;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
