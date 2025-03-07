@@ -17,15 +17,6 @@ namespace SimpleBankingApp
         // Dictionary to store receipts (key: username, value: list of receipts)
         public static Dictionary<string, List<Receipt>> Receipts = new Dictionary<string, List<Receipt>>();
 
-        static UserAccount()
-        {
-            // Ensure the base receipts folder exists
-            if (!Directory.Exists(receiptsBaseFolder))
-            {
-                Directory.CreateDirectory(receiptsBaseFolder);
-            }
-        }
-
         public static void AddAccount(string username, string password)
         {
             if (!Accounts.ContainsKey(username))
@@ -113,7 +104,6 @@ Amount: {Amount:C}
         {
             if (!Accounts.ContainsKey(username))
             {
-                Console.WriteLine("Username not found.");
                 return;
             }
 
@@ -142,12 +132,13 @@ Amount: {Amount:C}
             // Save the receipt to a file in the user's folder
             string receiptFileName = $"{userReceiptsFolder}/{purpose}_{receipt.TransactionDate:yyyyMMdd_HHmmss}.txt";
             File.WriteAllText(receiptFileName, receipt.ToString());
-
-            Console.WriteLine("Receipt added successfully!");
         }
 
         public static void LoadReceipts()
         {
+
+            Console.WriteLine("LoadReceipts method called.");
+
             // Ensure the receipts folder exists
             if (!Directory.Exists(receiptsBaseFolder))
             {
@@ -177,7 +168,11 @@ Amount: {Amount:C}
                     // Add the receipt to the user's receipt list
                     if (receipt != null)
                     {
-                        Receipts[username].Add(receipt);
+                        Receipts[username].Add(receipt);                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Failed to parse receipt.");
                     }
                 }
             }
@@ -190,21 +185,34 @@ Amount: {Amount:C}
                 // Extract the receipt details from the content
                 string[] lines = content.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-                string purpose = lines[2].Replace("Purpose: ", "").Trim();
-                DateTime transactionDate = DateTime.Parse(lines[0].Replace("Date: ", "").Trim());
-                decimal amount = decimal.Parse(lines[3].Replace("Amount: ", "").Trim(), System.Globalization.NumberStyles.Currency);
+                // Ensure the receipt content has enough lines
+                if (lines.Length < 8) // Adjusted for the extra space
+                {
+                    Console.WriteLine("Invalid receipt format: Not enough lines.");
+                    return null;
+                }
+
+                // Parse the receipt details
+                string dateLine = lines[4].Replace("Date: ", "").Trim(); // Line 4 contains the date
+                string timeLine = lines[5].Replace("Time: ", "").Trim(); // Line 5 contains the time
+                string purposeLine = lines[6].Replace("Purpose: ", "").Trim(); // Line 6 contains the purpose
+                string amountLine = lines[7].Replace("Amount: ", "").Trim(); // Line 7 contains the amount
+
+                // Combine date and time into a single DateTime object
+                DateTime transactionDate = DateTime.Parse($"{dateLine} {timeLine}");
+                decimal amount = decimal.Parse(amountLine, System.Globalization.NumberStyles.Currency);
 
                 // Create and return a new Receipt object
                 return new Receipt
                 {
-                    Purpose = purpose,
+                    Purpose = purposeLine,
                     TransactionDate = transactionDate,
                     Amount = amount
                 };
             }
-            catch
+            catch (Exception ex)
             {
-                // If parsing fails, return null
+                Console.WriteLine($"Error parsing receipt: {ex.Message}");
                 return null;
             }
         }

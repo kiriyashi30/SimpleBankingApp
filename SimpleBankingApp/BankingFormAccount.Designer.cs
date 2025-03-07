@@ -291,6 +291,8 @@
             textBoxPurpose.Location = new Point(3, 79);
             textBoxPurpose.Multiline = true;
             textBoxPurpose.Name = "textBoxPurpose";
+            textBoxPurpose.ReadOnly = true;
+            textBoxPurpose.ScrollBars = ScrollBars.Vertical;
             textBoxPurpose.Size = new Size(237, 236);
             textBoxPurpose.TabIndex = 31;
             // 
@@ -302,6 +304,8 @@
             textBoxName.Location = new Point(246, 79);
             textBoxName.Multiline = true;
             textBoxName.Name = "textBoxName";
+            textBoxName.ReadOnly = true;
+            textBoxName.ScrollBars = ScrollBars.Vertical;
             textBoxName.Size = new Size(237, 236);
             textBoxName.TabIndex = 32;
             // 
@@ -313,6 +317,8 @@
             textBoxDate.Location = new Point(489, 79);
             textBoxDate.Multiline = true;
             textBoxDate.Name = "textBoxDate";
+            textBoxDate.ReadOnly = true;
+            textBoxDate.ScrollBars = ScrollBars.Vertical;
             textBoxDate.Size = new Size(237, 236);
             textBoxDate.TabIndex = 33;
             // 
@@ -324,6 +330,8 @@
             textBoxTime.Location = new Point(732, 79);
             textBoxTime.Multiline = true;
             textBoxTime.Name = "textBoxTime";
+            textBoxTime.ReadOnly = true;
+            textBoxTime.ScrollBars = ScrollBars.Vertical;
             textBoxTime.Size = new Size(237, 236);
             textBoxTime.TabIndex = 34;
             // 
@@ -335,6 +343,8 @@
             textBoxAmount.Location = new Point(975, 79);
             textBoxAmount.Multiline = true;
             textBoxAmount.Name = "textBoxAmount";
+            textBoxAmount.ReadOnly = true;
+            textBoxAmount.ScrollBars = ScrollBars.Vertical;
             textBoxAmount.Size = new Size(240, 236);
             textBoxAmount.TabIndex = 35;
             // 

@@ -26,6 +26,13 @@ namespace SimpleBankingApp
         {
             InitializeComponent();
             currentUsername = username;
+
+            // Initialize currentAccountNum with the account number of the current user
+            if (UserAccount.Accounts.ContainsKey(currentUsername))
+            {
+                currentAccountNum = UserAccount.Accounts[currentUsername].AccountNumber;
+            }
+
             UpdateBalanceLabel();
             lblWelcome.Text = $"Welcome, {currentUsername}!";
         }
@@ -88,14 +95,15 @@ namespace SimpleBankingApp
 
         private void AccountCenterButton_Click(object sender, EventArgs e)
         {
+            // Pass currentUsername and currentAccountNum to the BankingFormAccount constructor
             BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
             bankingAccount.Show();
             this.Close();
-
         }
 
         private void MyAccount_Click(object sender, EventArgs e)
         {
+            // Pass currentUsername and currentAccountNum to the BankingFormAccount constructor
             BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
             bankingAccount.Show();
             this.Close();
