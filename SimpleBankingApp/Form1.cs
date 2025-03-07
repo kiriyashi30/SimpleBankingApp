@@ -11,6 +11,7 @@ namespace SimpleBankingApp
         {
             InitializeComponent();
             UserAccount.LoadAccounts();
+            UserAccount.LoadReceipts();
         }
         private void Form1_Load(object sender, EventArgs e)
         {

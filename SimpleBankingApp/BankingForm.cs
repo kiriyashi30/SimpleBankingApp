@@ -39,7 +39,8 @@ namespace SimpleBankingApp
 
         private void UpdateBalanceLabel()
         {
-            textBox2.Text = $"Balance: {UserAccount.Accounts[currentUsername].Balance:C}";
+            // Format the balance with a custom currency symbol
+            textBox2.Text = $"Balance: ₱{UserAccount.Accounts[currentUsername].Balance.ToString("N2")}";
         }
 
         private void BankingForm_Load(object sender, EventArgs e)
@@ -95,7 +96,6 @@ namespace SimpleBankingApp
 
         private void AccountCenterButton_Click(object sender, EventArgs e)
         {
-            UserAccount.LoadReceipts(); // Ensure receipts are loaded
             BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
             bankingAccount.Show();
             this.Close();
@@ -103,7 +103,6 @@ namespace SimpleBankingApp
 
         private void MyAccount_Click(object sender, EventArgs e)
         {
-            UserAccount.LoadReceipts(); // Ensure receipts are loaded
             BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
             bankingAccount.Show();
             this.Close();

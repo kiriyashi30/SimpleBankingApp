@@ -32,7 +32,7 @@ namespace SimpleBankingApp
         private void UpdateBalanceLabel()
         {
             // Update the balance label
-            label1.Text = $"Balance: {UserAccount.Accounts[currentUsername].Balance:C}";
+            label1.Text = $"Balance: ₱{UserAccount.Accounts[currentUsername].Balance.ToString("N2")}";
 
             // Update the account number label
             label5.Text = $"{UserAccount.Accounts[currentUsername].AccountNumber}";
@@ -40,26 +40,20 @@ namespace SimpleBankingApp
 
         private void DisplayAllReceipts()
         {
-            Console.WriteLine("DisplayAllReceipts method called."); // Debugging output
+            Console.WriteLine("DisplayAllReceipts method called.");
 
-            // Check if currentUsername is null or empty
             if (string.IsNullOrEmpty(currentUsername))
             {
                 Console.WriteLine("Error: currentUsername is null or empty.");
                 return;
             }
 
-            // Check if the user has any receipts
             if (UserAccount.Receipts.ContainsKey(currentUsername) && UserAccount.Receipts[currentUsername].Count > 0)
             {
-                // Get all receipts for the user
                 var receipts = UserAccount.Receipts[currentUsername];
-
-                // Debugging: Print the number of receipts
                 Console.WriteLine($"Displaying {receipts.Count} receipts for user: {currentUsername}");
 
-                // Build strings to display all receipts
-                StringBuilder receiptDetailsPurpose = new StringBuilder();  
+                StringBuilder receiptDetailsPurpose = new StringBuilder();
                 StringBuilder receiptDetailsName = new StringBuilder();
                 StringBuilder receiptDetailsTransactionDate = new StringBuilder();
                 StringBuilder receiptDetailsTransactionTime = new StringBuilder();
@@ -67,15 +61,27 @@ namespace SimpleBankingApp
 
                 foreach (var receipt in receipts)
                 {
-                    // Debugging: Print the receipt details
                     Console.WriteLine($"Purpose: {receipt.Purpose}, Date: {receipt.TransactionDate}, Amount: {receipt.Amount}");
 
-                    // Append receipt details to each StringBuilder
                     receiptDetailsPurpose.AppendLine($"{receipt.Purpose}");
                     receiptDetailsName.AppendLine($"{currentUsername}");
                     receiptDetailsTransactionDate.AppendLine($"{receipt.TransactionDate:yyyy-MM-dd}");
                     receiptDetailsTransactionTime.AppendLine($"{receipt.TransactionDate:HH:mm:ss}");
-                    receiptDetailsAmount.AppendLine($"{receipt.Amount:C}");
+                    receiptDetailsAmount.AppendLine($"₱{receipt.Amount.ToString("N2")}");
+
+                    // Append button click information if available
+                    if (receipt.ButtonClicks != null && receipt.ButtonClicks.Count > 0)
+                    {
+                        receiptDetailsAmount.AppendLine("Button Clicks:");
+                        foreach (var buttonClick in receipt.ButtonClicks)
+                        {
+                            receiptDetailsAmount.AppendLine($"{buttonClick.Key}: {buttonClick.Value} clicks");
+                        }
+                    }
+                    else
+                    {
+                        receiptDetailsAmount.AppendLine("No button clicks recorded.");
+                    }
 
                     // Add a separator after each receipt
                     receiptDetailsPurpose.AppendLine(new string('-', 30));
@@ -85,7 +91,6 @@ namespace SimpleBankingApp
                     receiptDetailsAmount.AppendLine(new string('-', 30));
                 }
 
-                // Debugging: Print the combined receipt details
                 Console.WriteLine("Purpose TextBox Content:");
                 Console.WriteLine(receiptDetailsPurpose.ToString());
 
@@ -106,16 +111,16 @@ namespace SimpleBankingApp
                 textBoxName.Text = receiptDetailsName.ToString();
                 textBoxDate.Text = receiptDetailsTransactionDate.ToString();
                 textBoxTime.Text = receiptDetailsTransactionTime.ToString();
-                textBoxAmount.Text = receiptDetailsAmount.ToString();
+                textBoxAmount.Text = receiptDetailsAmount.ToString(); // Includes button click information
             }
             else
             {
-                // If no receipts are found, clear the textboxes or display a message
-                textBoxPurpose.Text = "No receipts found."; 
+                Console.WriteLine("No receipts found for the user.");
+                textBoxPurpose.Text = "No receipts found.";
                 textBoxName.Text = "No receipts found.";
                 textBoxDate.Text = "No receipts found.";
                 textBoxTime.Text = "No receipts found.";
-                textBoxAmount.Text = "No receipts found.";
+                textBoxAmount.Text = "No receipts found."; // Clear amount textbox
             }
         }
 

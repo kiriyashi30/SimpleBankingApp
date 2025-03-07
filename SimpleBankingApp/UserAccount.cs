@@ -10,6 +10,7 @@ namespace SimpleBankingApp
     {
         private static string filePath = "accounts.txt";
         private static string receiptsBaseFolder = "Receipts"; // Base folder for all receipts
+        private static bool receiptsLoaded = false; // Flag to track if receipts are already loaded
 
         // Dictionary to store accounts
         public static Dictionary<string, Account> Accounts = new Dictionary<string, Account>();
@@ -59,10 +60,12 @@ namespace SimpleBankingApp
             public string Purpose { get; set; } // Deposit or Withdrawal
             public DateTime TransactionDate { get; set; }
             public decimal Amount { get; set; }
+            public Dictionary<string, int> ButtonClicks { get; set; } // New property to store button clicks
 
             public override string ToString()
             {
-                return $@"
+                StringBuilder receiptContent = new StringBuilder();
+                receiptContent.AppendLine($@"
 ---------------------------------
           TRANSACTION RECEIPT
 ---------------------------------
@@ -70,8 +73,19 @@ Date: {TransactionDate:yyyy-MM-dd}
 Time: {TransactionDate:HH:mm:ss}
 Purpose: {Purpose}
 Amount: {Amount:C}
----------------------------------
-";
+");
+
+                if (ButtonClicks != null && ButtonClicks.Count > 0)
+                {
+                    receiptContent.AppendLine("Button Clicks:");
+                    foreach (var buttonClick in ButtonClicks)
+                    {
+                        receiptContent.AppendLine($"{buttonClick.Key}: {buttonClick.Value} clicks");
+                    }
+                }
+
+                receiptContent.AppendLine("---------------------------------");
+                return receiptContent.ToString();
             }
         }
         public static void LoadAccounts()
@@ -100,7 +114,7 @@ Amount: {Amount:C}
             var lines = Accounts.Select(acc => $"{acc.Key}:{acc.Value.AccountNumber}:{acc.Value.Password}:{acc.Value.Balance}");
             File.WriteAllLines(filePath, lines);
         }
-        public static void AddReceipt(string username, string purpose, decimal amount)
+        public static void AddReceipt(string username, string purpose, decimal amount, Dictionary<string, int> buttonClicks = null)
         {
             if (!Accounts.ContainsKey(username))
             {
@@ -112,7 +126,8 @@ Amount: {Amount:C}
             {
                 Purpose = purpose,
                 TransactionDate = DateTime.Now,
-                Amount = amount
+                Amount = amount,
+                ButtonClicks = buttonClicks // Add button click information
             };
 
             // Add the receipt to the user's receipt list
@@ -136,12 +151,21 @@ Amount: {Amount:C}
 
         public static void LoadReceipts()
         {
+            if (receiptsLoaded)
+            {
+                Console.WriteLine("Receipts already loaded. Skipping reload.");
+                return;
+            }
 
             Console.WriteLine("LoadReceipts method called.");
+
+            // Clear the Receipts dictionary before loading
+            Receipts.Clear();
 
             // Ensure the receipts folder exists
             if (!Directory.Exists(receiptsBaseFolder))
             {
+                Console.WriteLine("Receipts folder does not exist.");
                 return;
             }
 
@@ -149,6 +173,7 @@ Amount: {Amount:C}
             foreach (var userFolder in Directory.GetDirectories(receiptsBaseFolder))
             {
                 string username = Path.GetFileName(userFolder); // Get the username from the folder name
+                Console.WriteLine($"Loading receipts for user: {username}");
 
                 // Initialize the receipt list for the user if it doesn't exist
                 if (!Receipts.ContainsKey(username))
@@ -159,6 +184,8 @@ Amount: {Amount:C}
                 // Iterate through each receipt file in the user's folder
                 foreach (var receiptFile in Directory.GetFiles(userFolder, "*.txt"))
                 {
+                    Console.WriteLine($"Reading receipt file: {receiptFile}");
+
                     // Read the receipt content from the file
                     string receiptContent = File.ReadAllText(receiptFile);
 
@@ -168,7 +195,8 @@ Amount: {Amount:C}
                     // Add the receipt to the user's receipt list
                     if (receipt != null)
                     {
-                        Receipts[username].Add(receipt);                        
+                        Receipts[username].Add(receipt);
+                        Console.WriteLine($"Added receipt: {receipt}");
                     }
                     else
                     {
@@ -176,8 +204,9 @@ Amount: {Amount:C}
                     }
                 }
             }
-        }
 
+            receiptsLoaded = true; // Mark receipts as loaded
+        }
         private static Receipt ParseReceiptFromContent(string content)
         {
             try
@@ -202,12 +231,48 @@ Amount: {Amount:C}
                 DateTime transactionDate = DateTime.Parse($"{dateLine} {timeLine}");
                 decimal amount = decimal.Parse(amountLine, System.Globalization.NumberStyles.Currency);
 
+                // Parse button click information if available
+                Dictionary<string, int> buttonClicks = new Dictionary<string, int>();
+                bool buttonClicksSection = false;
+
+                for (int i = 8; i < lines.Length; i++) // Start from line 8 (after the basic receipt details)
+                {
+                    string line = lines[i].Trim();
+
+                    if (line.StartsWith("Button Clicks:"))
+                    {
+                        buttonClicksSection = true;
+                        continue; // Skip the "Button Clicks:" line
+                    }
+
+                    if (buttonClicksSection)
+                    {
+                        if (line.Contains(":"))
+                        {
+                            string[] parts = line.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                            if (parts.Length == 2)
+                            {
+                                string buttonName = parts[0].Trim();
+                                if (int.TryParse(parts[1].Trim().Replace("clicks", "").Trim(), out int clicks))
+                                {
+                                    buttonClicks[buttonName] = clicks;
+                                }
+                            }
+                        }
+                        else if (line.StartsWith("---------------------------------"))
+                        {
+                            break; // End of button clicks section
+                        }
+                    }
+                }
+
                 // Create and return a new Receipt object
                 return new Receipt
                 {
                     Purpose = purposeLine,
                     TransactionDate = transactionDate,
-                    Amount = amount
+                    Amount = amount,
+                    ButtonClicks = buttonClicks.Count > 0 ? buttonClicks : null // Set button clicks if available
                 };
             }
             catch (Exception ex)
