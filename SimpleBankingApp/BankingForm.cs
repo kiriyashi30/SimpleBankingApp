@@ -95,7 +95,7 @@ namespace SimpleBankingApp
 
         private void AccountCenterButton_Click(object sender, EventArgs e)
         {
-            // Pass currentUsername and currentAccountNum to the BankingFormAccount constructor
+            UserAccount.LoadReceipts(); // Ensure receipts are loaded
             BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
             bankingAccount.Show();
             this.Close();
@@ -103,7 +103,7 @@ namespace SimpleBankingApp
 
         private void MyAccount_Click(object sender, EventArgs e)
         {
-            // Pass currentUsername and currentAccountNum to the BankingFormAccount constructor
+            UserAccount.LoadReceipts(); // Ensure receipts are loaded
             BankingFormAccount bankingAccount = new BankingFormAccount(currentUsername, currentAccountNum);
             bankingAccount.Show();
             this.Close();

@@ -288,6 +288,7 @@
             textBoxPurpose.BackColor = Color.PaleTurquoise;
             textBoxPurpose.BorderStyle = BorderStyle.None;
             textBoxPurpose.Dock = DockStyle.Fill;
+            textBoxPurpose.Font = new Font("Arial", 10.875F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxPurpose.Location = new Point(3, 79);
             textBoxPurpose.Multiline = true;
             textBoxPurpose.Name = "textBoxPurpose";
@@ -295,12 +296,14 @@
             textBoxPurpose.ScrollBars = ScrollBars.Vertical;
             textBoxPurpose.Size = new Size(237, 236);
             textBoxPurpose.TabIndex = 31;
+            textBoxPurpose.TextAlign = HorizontalAlignment.Center;
             // 
             // textBoxName
             // 
             textBoxName.BackColor = Color.PaleTurquoise;
             textBoxName.BorderStyle = BorderStyle.None;
             textBoxName.Dock = DockStyle.Fill;
+            textBoxName.Font = new Font("Arial", 10.875F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxName.Location = new Point(246, 79);
             textBoxName.Multiline = true;
             textBoxName.Name = "textBoxName";
@@ -308,12 +311,14 @@
             textBoxName.ScrollBars = ScrollBars.Vertical;
             textBoxName.Size = new Size(237, 236);
             textBoxName.TabIndex = 32;
+            textBoxName.TextAlign = HorizontalAlignment.Center;
             // 
             // textBoxDate
             // 
             textBoxDate.BackColor = Color.PaleTurquoise;
             textBoxDate.BorderStyle = BorderStyle.None;
             textBoxDate.Dock = DockStyle.Fill;
+            textBoxDate.Font = new Font("Arial", 10.875F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxDate.Location = new Point(489, 79);
             textBoxDate.Multiline = true;
             textBoxDate.Name = "textBoxDate";
@@ -321,12 +326,14 @@
             textBoxDate.ScrollBars = ScrollBars.Vertical;
             textBoxDate.Size = new Size(237, 236);
             textBoxDate.TabIndex = 33;
+            textBoxDate.TextAlign = HorizontalAlignment.Center;
             // 
             // textBoxTime
             // 
             textBoxTime.BackColor = Color.PaleTurquoise;
             textBoxTime.BorderStyle = BorderStyle.None;
             textBoxTime.Dock = DockStyle.Fill;
+            textBoxTime.Font = new Font("Arial", 10.875F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxTime.Location = new Point(732, 79);
             textBoxTime.Multiline = true;
             textBoxTime.Name = "textBoxTime";
@@ -334,12 +341,14 @@
             textBoxTime.ScrollBars = ScrollBars.Vertical;
             textBoxTime.Size = new Size(237, 236);
             textBoxTime.TabIndex = 34;
+            textBoxTime.TextAlign = HorizontalAlignment.Center;
             // 
             // textBoxAmount
             // 
             textBoxAmount.BackColor = Color.PaleTurquoise;
             textBoxAmount.BorderStyle = BorderStyle.None;
             textBoxAmount.Dock = DockStyle.Fill;
+            textBoxAmount.Font = new Font("Arial", 10.875F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxAmount.Location = new Point(975, 79);
             textBoxAmount.Multiline = true;
             textBoxAmount.Name = "textBoxAmount";
@@ -347,6 +356,7 @@
             textBoxAmount.ScrollBars = ScrollBars.Vertical;
             textBoxAmount.Size = new Size(240, 236);
             textBoxAmount.TabIndex = 35;
+            textBoxAmount.TextAlign = HorizontalAlignment.Center;
             // 
             // BankingFormAccount
             // 
