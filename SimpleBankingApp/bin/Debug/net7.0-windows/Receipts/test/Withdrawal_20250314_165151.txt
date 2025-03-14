@@ -1,0 +1,15 @@
+
+---------------------------------
+          TRANSACTION RECEIPT
+---------------------------------
+Date: 2025-03-14
+Time: 16:51:51
+Purpose: Withdrawal
+Amount: ₱3,800.00
+
+Button Clicks:
+1000 Peso Bill: 3 clicks
+500 Peso Bill: 1 clicks
+200 Peso Bill: 1 clicks
+100 Peso Bill: 1 clicks
+---------------------------------

@@ -51,7 +51,7 @@ namespace SimpleBankingApp
 
             // Deposit the valid amount
             account.Balance += depositAmount;
-            MessageBox.Show($"Successfully deposited ₱{depositAmount.ToString("N2")}");
+            MessageBox.Show($"Successfully deposited ₱{depositAmount.ToString("N2")}\nYour Current Balance is: ₱" + account.Balance);
 
             // Save the updated account balance
             UserAccount.SaveAccounts();

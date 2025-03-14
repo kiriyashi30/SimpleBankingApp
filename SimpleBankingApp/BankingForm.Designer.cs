@@ -29,14 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BankingForm));
-            Deposit = new Button();
-            Withdraw = new Button();
-            Back = new Button();
             lblWelcome = new Label();
-            panel1 = new Panel();
-            tableLayoutPanel4 = new TableLayoutPanel();
-            MyAccount = new Button();
-            label3 = new Label();
             label2 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -47,8 +40,6 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             WithdrawalButton2 = new Button();
             DepositButton2 = new Button();
-            panel1.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ToggleViewBox).BeginInit();
@@ -56,40 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)AccountCenterButton).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // Deposit
-            // 
-            Deposit.Anchor = AnchorStyles.Top;
-            Deposit.Location = new Point(3, 189);
-            Deposit.Name = "Deposit";
-            Deposit.Size = new Size(211, 58);
-            Deposit.TabIndex = 0;
-            Deposit.Text = "Deposit";
-            Deposit.UseVisualStyleBackColor = true;
-            Deposit.Click += Deposit_Click;
-            // 
-            // Withdraw
-            // 
-            Withdraw.Anchor = AnchorStyles.Top;
-            Withdraw.Location = new Point(3, 282);
-            Withdraw.Name = "Withdraw";
-            Withdraw.Size = new Size(211, 58);
-            Withdraw.TabIndex = 1;
-            Withdraw.Text = "Withdraw";
-            Withdraw.UseVisualStyleBackColor = true;
-            Withdraw.Click += Withdraw_Click;
-            // 
-            // Back
-            // 
-            Back.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            Back.Font = new Font("Arial", 13.875F, FontStyle.Bold, GraphicsUnit.Point);
-            Back.Location = new Point(3, 494);
-            Back.Name = "Back";
-            Back.Size = new Size(211, 40);
-            Back.TabIndex = 3;
-            Back.Text = "Log Out";
-            Back.UseVisualStyleBackColor = true;
-            Back.Click += logOutButton_Click;
             // 
             // lblWelcome
             // 
@@ -103,64 +60,6 @@
             lblWelcome.TabIndex = 5;
             lblWelcome.Text = "Welcome";
             lblWelcome.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // panel1
-            // 
-            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel1.BackColor = Color.MidnightBlue;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(tableLayoutPanel4);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(221, 567);
-            panel1.TabIndex = 7;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 1;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Controls.Add(MyAccount, 0, 1);
-            tableLayoutPanel4.Controls.Add(Back, 0, 5);
-            tableLayoutPanel4.Controls.Add(label3, 0, 0);
-            tableLayoutPanel4.Controls.Add(Withdraw, 0, 3);
-            tableLayoutPanel4.Controls.Add(Deposit, 0, 2);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(0, 0);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 6;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel4.Size = new Size(217, 563);
-            tableLayoutPanel4.TabIndex = 0;
-            // 
-            // MyAccount
-            // 
-            MyAccount.Anchor = AnchorStyles.Top;
-            MyAccount.Location = new Point(3, 96);
-            MyAccount.Name = "MyAccount";
-            MyAccount.Size = new Size(211, 58);
-            MyAccount.TabIndex = 11;
-            MyAccount.Text = "My Account";
-            MyAccount.UseVisualStyleBackColor = true;
-            MyAccount.Click += MyAccount_Click;
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Rounded MT Bold", 19.875F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(3, 30);
-            label3.Name = "label3";
-            label3.Size = new Size(211, 32);
-            label3.TabIndex = 10;
-            label3.Text = "Menu";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -184,7 +83,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Controls.Add(lblWelcome, 0, 0);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 1);
-            tableLayoutPanel2.Location = new Point(221, 0);
+            tableLayoutPanel2.Location = new Point(63, 2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 57.2973F));
@@ -220,6 +119,7 @@
             textBox2.Font = new Font("Arial", 19.875F, FontStyle.Bold, GraphicsUnit.Point);
             textBox2.Location = new Point(3, 21);
             textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
             textBox2.Size = new Size(491, 31);
             textBox2.TabIndex = 10;
             textBox2.Text = "Current Balance:";
@@ -247,7 +147,7 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(AccountCenterButton, 1, 1);
             tableLayoutPanel5.Controls.Add(label2, 0, 1);
-            tableLayoutPanel5.Location = new Point(1074, 2);
+            tableLayoutPanel5.Location = new Point(1035, 1);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -281,7 +181,7 @@
             tableLayoutPanel1.Controls.Add(WithdrawalButton2, 2, 1);
             tableLayoutPanel1.Controls.Add(DepositButton2, 1, 1);
             tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            tableLayoutPanel1.Location = new Point(221, 188);
+            tableLayoutPanel1.Location = new Point(63, 176);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 8.201058F));
@@ -325,15 +225,11 @@
             Controls.Add(tableLayoutPanel1);
             Controls.Add(tableLayoutPanel5);
             Controls.Add(tableLayoutPanel2);
-            Controls.Add(panel1);
             Name = "BankingForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BankingForm";
             WindowState = FormWindowState.Maximized;
             Load += BankingForm_Load;
-            panel1.ResumeLayout(false);
-            tableLayoutPanel4.ResumeLayout(false);
-            tableLayoutPanel4.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
@@ -348,18 +244,11 @@
         }
 
         #endregion
-
-        private Button Deposit;
-        private Button Withdraw;
-        private Button Back;
         private Label lblWelcome;
         private Label textBox1;
-        private Panel panel1;
         private Label label2;
-        private Label label3;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
-        private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel1;
         private Button WithdrawalButton2;
@@ -367,6 +256,5 @@
         private PictureBox AccountCenterButton;
         private TextBox textBox2;
         private PictureBox ToggleViewBox;
-        private Button MyAccount;
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using static SimpleBankingApp.UserAccount;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SimpleBankingApp
 {
@@ -72,15 +73,47 @@ namespace SimpleBankingApp
                     // Append button click information if available
                     if (receipt.ButtonClicks != null && receipt.ButtonClicks.Count > 0)
                     {
-                        receiptDetailsAmount.AppendLine("Button Clicks:");
-                        foreach (var buttonClick in receipt.ButtonClicks)
-                        {
-                            receiptDetailsAmount.AppendLine($"{buttonClick.Key}: {buttonClick.Value} clicks");
+                        double total = double.Parse(receipt.Amount.ToString("N2"));
+                        List<int> subtractNumbers = new List<int> { 1000, 500, 200, 100};
+                        var numberUsageCount = new Dictionary<int, int>();
+                        subtractNumbers.Sort((a, b) => b.CompareTo(a));
+
+                        foreach(var number in subtractNumbers)
+        {
+                            if (!numberUsageCount.ContainsKey(number))
+                            {
+                                numberUsageCount[number] = 0;
+                            }
                         }
-                    }
-                    else
-                    {
-                        receiptDetailsAmount.AppendLine("No button clicks recorded.");
+                        while (total > 0)
+                        {
+                            foreach (var number in subtractNumbers)
+                            {
+                                if (total >= number) // Only subtract if it's possible
+                                {
+                                    total -= number;
+                                    numberUsageCount[number]++;
+
+                                    // Exit the loop once a subtraction is made
+                                    break;
+                                }
+                            }
+                        }
+
+                        receiptDetailsAmount.AppendLine("Bills received:");
+
+                        foreach (var entry in numberUsageCount)
+                        {
+                            if (entry.Value > 0)
+                            {
+                                receiptDetailsAmount.AppendLine($"₱{entry.Key}:  {entry.Value}x");
+
+                            }    
+                        }
+                        //foreach (var buttonClick in receipt.ButtonClicks)
+                        //{
+                        //    receiptDetailsAmount.AppendLine($"{buttonClick.Key}: {buttonClick.Value} clicks");
+                        //}
                     }
 
                     // Add a separator after each receipt

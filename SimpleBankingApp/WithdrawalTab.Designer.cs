@@ -38,8 +38,6 @@
             button500 = new Button();
             button200 = new Button();
             button100 = new Button();
-            button50 = new Button();
-            button20 = new Button();
             WithdrawalTextBox = new TextBox();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -103,12 +101,10 @@
             tableLayoutPanel1.Controls.Add(WithdrawalTabLabel, 2, 0);
             tableLayoutPanel1.Controls.Add(WithdrawalTabButton, 2, 4);
             tableLayoutPanel1.Controls.Add(button1000, 1, 1);
-            tableLayoutPanel1.Controls.Add(button500, 2, 1);
             tableLayoutPanel1.Controls.Add(button200, 3, 1);
-            tableLayoutPanel1.Controls.Add(button100, 1, 2);
-            tableLayoutPanel1.Controls.Add(button50, 2, 2);
-            tableLayoutPanel1.Controls.Add(button20, 3, 2);
             tableLayoutPanel1.Controls.Add(WithdrawalTextBox, 2, 3);
+            tableLayoutPanel1.Controls.Add(button500, 1, 2);
+            tableLayoutPanel1.Controls.Add(button100, 3, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
             tableLayoutPanel1.Location = new Point(217, 0);
@@ -163,7 +159,7 @@
             // 
             button500.Anchor = AnchorStyles.None;
             button500.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            button500.Location = new Point(491, 129);
+            button500.Location = new Point(247, 244);
             button500.Name = "button500";
             button500.Size = new Size(238, 86);
             button500.TabIndex = 13;
@@ -187,37 +183,13 @@
             // 
             button100.Anchor = AnchorStyles.None;
             button100.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            button100.Location = new Point(247, 244);
+            button100.Location = new Point(735, 244);
             button100.Name = "button100";
             button100.Size = new Size(238, 86);
             button100.TabIndex = 15;
             button100.Text = "₱100";
             button100.UseVisualStyleBackColor = true;
             button100.Click += button100_Click;
-            // 
-            // button50
-            // 
-            button50.Anchor = AnchorStyles.None;
-            button50.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            button50.Location = new Point(491, 244);
-            button50.Name = "button50";
-            button50.Size = new Size(238, 86);
-            button50.TabIndex = 16;
-            button50.Text = "₱50";
-            button50.UseVisualStyleBackColor = true;
-            button50.Click += button50_Click;
-            // 
-            // button20
-            // 
-            button20.Anchor = AnchorStyles.None;
-            button20.Font = new Font("Arial", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
-            button20.Location = new Point(735, 244);
-            button20.Name = "button20";
-            button20.Size = new Size(238, 86);
-            button20.TabIndex = 17;
-            button20.Text = "₱20";
-            button20.UseVisualStyleBackColor = true;
-            button20.Click += button20_Click;
             // 
             // WithdrawalTextBox
             // 
@@ -258,8 +230,6 @@
         private Button button500;
         private Button button200;
         private Button button100;
-        private Button button50;
-        private Button button20;
         private TextBox WithdrawalTextBox;
     }
 }
