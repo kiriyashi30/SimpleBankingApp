@@ -1,0 +1,17 @@
+
+---------------------------------
+          TRANSACTION RECEIPT
+---------------------------------
+Date: 2025-03-14
+Time: 14:24:43
+Purpose: Withdrawal
+Amount: ₱900.00
+
+Button Clicks:
+button1000: 0 clicks
+button500: 1 clicks
+button200: 2 clicks
+button100: 0 clicks
+button50: 0 clicks
+button20: 0 clicks
+---------------------------------

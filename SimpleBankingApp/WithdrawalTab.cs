@@ -23,12 +23,12 @@ namespace SimpleBankingApp
             currentUsername = username;
 
             // Initialize button click counts
-            buttonClicks["button1000"] = 0;
-            buttonClicks["button500"] = 0;
-            buttonClicks["button200"] = 0;
-            buttonClicks["button100"] = 0;
-            buttonClicks["button50"] = 0;
-            buttonClicks["button20"] = 0;
+            buttonClicks["1000 Peso Bill"] = 0;
+            buttonClicks["500 Peso Bill"] = 0;
+            buttonClicks["200 Peso Bill"] = 0;
+            buttonClicks["100 Peso Bill"] = 0;
+            //buttonClicks["button50"] = 0;
+            //buttonClicks["button20"] = 0;
         }
 
         private void WithdrawalTabButton_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace SimpleBankingApp
                         // Add the receipt with button click information
                         UserAccount.AddReceipt(currentUsername, currentPurpose, currentAmount, buttonClicks);
 
-                        MessageBox.Show("Withdrawal successful!");
+                        MessageBox.Show("Withdrawal successful!\nYour current balance is now: ₱" + account.Balance);
 
                         BankingForm bankingtab = new BankingForm(currentUsername);
                         bankingtab.Show();
@@ -87,38 +87,38 @@ namespace SimpleBankingApp
         private void button1000_Click(object sender, EventArgs e)
         {
             UpdateWithdrawalAmount(1000);
-            buttonClicks["button1000"]++;
+            buttonClicks["1000 Peso Bill"]++;
         }
 
         private void button500_Click(object sender, EventArgs e)
         {
             UpdateWithdrawalAmount(500);
-            buttonClicks["button500"]++;
+            buttonClicks["500 Peso Bill"]++;
         }
 
         private void button200_Click(object sender, EventArgs e)
         {
             UpdateWithdrawalAmount(200);
-            buttonClicks["button200"]++;
+            buttonClicks["200 Peso Bill"]++;
         }
 
         private void button100_Click(object sender, EventArgs e)
         {
             UpdateWithdrawalAmount(100);
-            buttonClicks["button100"]++;
+            buttonClicks["100 Peso Bill"]++;
         }
 
-        private void button50_Click(object sender, EventArgs e)
-        {
-            UpdateWithdrawalAmount(50);
-            buttonClicks["button50"]++;
-        }
+        //private void button50_Click(object sender, EventArgs e)
+        //{
+        //    UpdateWithdrawalAmount(50);
+        //    buttonClicks["button50"]++;
+        //}
 
-        private void button20_Click(object sender, EventArgs e)
-        {
-            UpdateWithdrawalAmount(20);
-            buttonClicks["button20"]++;
-        }
+        //private void button20_Click(object sender, EventArgs e)
+        //{
+        //    UpdateWithdrawalAmount(20);
+        //    buttonClicks["button20"]++;
+        //}
 
         private void UpdateWithdrawalAmount(int amount)
         {
@@ -131,6 +131,11 @@ namespace SimpleBankingApp
                 currentValue = amount;
             }
             WithdrawalTextBox.Text = currentValue.ToString();
+        }
+
+        private void button50_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
